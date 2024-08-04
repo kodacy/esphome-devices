@@ -78,7 +78,7 @@ esphome:
             then:
               - if:
                   condition:
-                    lambda: 'return status_code == 200;'
+                    lambda: 'return response->status_code == 200;'
                   then:
                     - light.turn_off:
                         id: white_light
@@ -105,6 +105,7 @@ deep_sleep:
 http_request:
   useragent: esphome/device
   timeout: 10s
+  verify_ssl: false
 
 esp8266:
   board: esp_wroom_02
@@ -119,7 +120,7 @@ api:
 
 ota:
   password: "***"
-
+  platform: esphome
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
